@@ -10,7 +10,6 @@ import Button from "react-bootstrap/esm/Button";
 import Login from "../components/Login";
 import { CircularProgress } from "@mui/material";
 import Alert from "react-bootstrap/Alert";
-import { logout } from "../context/AuthActions";
 
 const Home = () => {
   const { user } = useContext(AuthContext);
@@ -39,52 +38,52 @@ const Home = () => {
       style={{ height: "100vh", width: "100vw" }}
       className="p-4 home"
     >
-      {user ? (
-        <Container className="search">
-          <Container className="d-flex flex-column w-50 align-items-center justify-content-center">
-            <input
-              type="search"
-              placeholder="Search by country name"
-              ref={searchText}
-              className="searchInput"
-            />
-            {loading ? (
-              <Button
-                disabled
-                className="searchBtn d-flex align-items-center justify-content-center"
-              >
-                <CircularProgress color="inherit" size={20} />
-              </Button>
-            ) : (
-              <Button onClick={handleSearch} className="searchBtn">
-                Search
-              </Button>
-            )}
-            {error && (
-              <>
-                {["danger"].map((variant) => (
-                  <Alert key={variant} variant={variant}>
-                    Something went wrong.
-                  </Alert>
-                ))}
-              </>
-            )}
-          </Container>
-          <Container className="d-flex align-items-center justify-content-center p-4 resultsWrapper">
-            {searchText === ""
-              ? null
-              : countries?.map((country, i) => (
-                  <CountryCard country={country} key={i} />
-                ))}
-          </Container>
+      {/* {user ? ( */}
+      <Container className="search">
+        <Container className="d-flex flex-column w-50 align-items-center justify-content-center">
+          <input
+            type="search"
+            placeholder="Search by country name"
+            ref={searchText}
+            className="searchInput"
+          />
+          {loading ? (
+            <Button
+              disabled
+              className="searchBtn d-flex align-items-center justify-content-center"
+            >
+              <CircularProgress color="inherit" size={20} />
+            </Button>
+          ) : (
+            <Button onClick={handleSearch} className="searchBtn">
+              Search
+            </Button>
+          )}
+          {error && (
+            <>
+              {["danger"].map((variant) => (
+                <Alert key={variant} variant={variant}>
+                  Something went wrong.
+                </Alert>
+              ))}
+            </>
+          )}
         </Container>
-      ) : (
+        <Container className="d-flex align-items-center justify-content-center p-4 resultsWrapper">
+          {searchText === ""
+            ? null
+            : countries?.map((country, i) => (
+                <CountryCard country={country} key={i} />
+              ))}
+        </Container>
+      </Container>
+      {/* ) : (
         <Container className="loginCont">
           <Container className="d-flex flex-column w-50 align-items-center justify-content-center">
             <Login />
           </Container>
         </Container>
-      )}
+      )} */}
       <Canvas>
         <Suspense fallback={null}>
           <Earth />
